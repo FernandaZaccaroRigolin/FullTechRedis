@@ -1,0 +1,83 @@
+
+Redis - banco de dados em memória
+
+- Usado para cache de informações
+- Significado: REmote DIctionary Server.
+
+
+Documentação do Redis: redis.io
+
+- A instalação do Redis é feita apenas em sistemas baseados em Unix (linux, macOs)
+- Para instalar no windows, é necessário habilitar o WSL e adicionar uma instância do Linux,
+  significando que, apesar de termos uma máquina windows, ainda assim estaríamos trabalhando 
+  com Linux.
+
+- Solução para as aulas, e posteriormente para futuras implementações:
+ 
+	criar uma conta na nuvem para uso do Redis: redis.com
+-----------------------------------------------------------------------
+
+Implementação de chaves
+
+	- Usar uma estrutura hierárquica, separada por : (dois pontos)
+
+	Exemplos:
+
+	cliente:c1234:nome
+	cliente:c1234:email
+
+	pedido:123/2023:total
+	....
+
+   Pesquisando chaves
+
+	KEYS <padrao>
+
+	KEYS *			retorna todas as chaves
+	KEYS turma:*		retorna as chaves iniciadas por 'turma'
+	KEYS *:cliente		retorna as chaves terminadas por 'cliente'
+
+
+
+
+	empresa: escola
+	empresa:escola
+
+
+	public Set<String> filtrarResultados(int mes, int ano) {
+		String chave = "resultado:*-%02d-%04d:prova";
+        	Jedis jedis = new Jedis("redis://default:5taVgpR2Zf8hZOYAgzd2YJYXSPTSqpBh@redis-12813.c282.east-us-mz.azure.cloud.redislabs.com:12813");
+        	Connection connection = jedis.getConnection();
+
+        	jedis.close();
+        	connection.close();
+        
+        	return jedis.keys(String.format(chave, mes, ano));
+	}
+
+
+-----------------------------------------
+Uso de labels (hashes)
+
+	resultado:04-09-2023:prova ? aprovado
+	resultado:04-09-2023:prova ? reprovado
+
+
+	Map<String, String> cliente = new HashMap<String, String>();
+
+	cliente.put("cpf", cpfCliente);
+	...
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+#Ignore all .meta file
+*.metadata
+#But not source file with postfix. which is everything but a folder
+!*.*.metadata
